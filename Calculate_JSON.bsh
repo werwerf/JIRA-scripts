@@ -1,0 +1,19 @@
+/* This script takes the values of the referenced custom fields and creates the correct JSON code to be used to create users via import in JIRA */
+/* Used with the JIRA Misc Custom Fields Add on: https://innovalog.atlassian.net/wiki/display/JMCF/JIRA+Misc+Custom+Fields#JIRAMiscCustomFields-calculatedtextfield */
+<!-- @@Formula:
+
+/* Create an iterator to capture the permission groups selected for the user to be created */
+Iterator grps = issue.get("customfield_12406").iterator();
+String grpsStr = "";
+
+/* Create the string to be used in the JSON code for the groups */
+while (grps.hasNext()){
+   grpsStr = grpsStr + "\"" + grps.next().getName() + "\",";
+}
+/* We terminate the string with the confluence-users group, that gives access to Confluence */
+grpsStr = grpsStr + "\"confluence-users\"";
+
+/* We return as the field value the generated JSON code */
+return "{ \"name\" : \"" + issue.get("customfield_12407") + "\", \"groups\" :[ " + grpsStr + "],\"active\" : true,\"email\" : \"" + issue.get("customfield_12408") + "\",\"fullname\" : \"" + issue.get("customfield_12403") + "\"},";
+
+-->
