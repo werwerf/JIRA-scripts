@@ -6,4 +6,5 @@ Scripts list
 
 - **Update_parent**: executed in a transition, gets the original estimation of the subtask and updates a custom field in the parent 
   task with the value of the original estimation.
+- **Create_subtasks**: executed in a transition, checks if the issue has already subtasks. If not, it creates a subtask of the given type updating some common fields.
 - **Calculate_JSON**: Beanshell script used in a custom field to generate the JSON code necesary to create a user based on values on the custom fields of the issue.
